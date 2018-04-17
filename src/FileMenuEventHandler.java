@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 public class FileMenuEventHandler implements ActionListener {
 
 	private JFrame frame;
-	private Menu menu;
 	private String dir;
 	
 	public FileMenuEventHandler(JFrame frame) {
