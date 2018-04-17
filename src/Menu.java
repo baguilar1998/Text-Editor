@@ -11,13 +11,13 @@ public class Menu extends JMenuBar{
 	private JMenuItem undo,cut,copy,paste,delete;
 	private JMenuItem font;
 	private JMenuItem statusbar;
-	private MenuEventHandler meh;
+	private FileMenuEventHandler meh;
 
 
 	
 	public Menu(JFrame frame) {
 		this.frame = frame;
-		meh = new MenuEventHandler(frame,this);
+		meh = new FileMenuEventHandler(frame);
 		setFileTab();
 		setEditTab();
 		setFormatTab();
@@ -37,9 +37,11 @@ public class Menu extends JMenuBar{
 		file.add(open);
 		
 		save = new JMenuItem("Save");
+		save.addActionListener(meh);
 		file.add(save);
 		
-		saveAs = new JMenuItem("Save as");
+		saveAs = new JMenuItem("Save As");
+		saveAs.addActionListener(meh);
 		file.add(saveAs);
 		
 	}
