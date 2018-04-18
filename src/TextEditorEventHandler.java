@@ -20,6 +20,8 @@ public class TextEditorEventHandler implements DocumentListener {
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
+		if(((TextEditorGUI)frame).getTitle().charAt(0) == '*')return;
+		else ((TextEditorGUI)frame).setTitle("*"+((TextEditorGUI)frame).getTitle());
 		
 	}
 

@@ -1,5 +1,4 @@
 import java.awt.GridLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;

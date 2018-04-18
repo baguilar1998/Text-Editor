@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
-
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -57,7 +56,15 @@ public class FileMenuEventHandler implements ActionListener {
 		}
 		
 		if(menuName.equals("Save")) {
-			String fileName =((TextEditorGUI)frame).getTitle().substring(0,((TextEditorGUI)frame).getTitle().indexOf("-"));
+			String fileName="";
+			if(((TextEditorGUI)frame).getTitle().charAt(0)=='*') {
+				fileName=((TextEditorGUI)frame).getTitle().substring(1,((TextEditorGUI)frame).getTitle().indexOf("-"));
+				((TextEditorGUI)frame).setTitle(((TextEditorGUI)frame).getTitle().substring(1));
+			}else {
+				fileName =((TextEditorGUI)frame).getTitle().substring(0,((TextEditorGUI)frame).getTitle().indexOf("-"));
+				((TextEditorGUI)frame).setTitle(((TextEditorGUI)frame).getTitle());
+			}
+
 			File file = new File(dir+"\\"+fileName);
 			if(file.exists()) {
 				PrintWriter writer;
@@ -90,7 +97,8 @@ public class FileMenuEventHandler implements ActionListener {
 			JFileChooser choose = new JFileChooser();
 			if(choose.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 			try {
-				    File file = new File(choose.getCurrentDirectory().toString()+ "\\" + choose.getSelectedFile().getName());
+					String fileName =choose.getCurrentDirectory().toString()+ "\\" + choose.getSelectedFile().getName();
+				    File file = new File(fileName);
 				    if(file.exists()) {
 				    	int confirm = JOptionPane.showConfirmDialog(null, "File already exists. Do you want to overwrite it?","Choose one",JOptionPane.YES_NO_OPTION);
 				    	if(confirm == JOptionPane.NO_OPTION)return;

@@ -12,18 +12,26 @@ public class Menu extends JMenuBar{
 	private JMenuItem font;
 	private JMenuItem statusbar;
 	private FileMenuEventHandler meh;
+	private EditMenuEventHandler eeh;
 
 
-	
+	/*
+	 * Default constructor for the menu
+	 * @param the JFrame the menu will be placed in
+	 */
 	public Menu(JFrame frame) {
 		this.frame = frame;
 		meh = new FileMenuEventHandler(frame);
+		eeh = new EditMenuEventHandler(frame);
 		setFileTab();
 		setEditTab();
 		setFormatTab();
 		setViewTab();
 	}
 	
+	/*
+	 * A helper method to set up the File Menu
+	 */
 	private void setFileTab() {
 		file = new JMenu("File");
 		add(file);
@@ -46,6 +54,9 @@ public class Menu extends JMenuBar{
 		
 	}
 	
+	/*
+	 * A helper method to set up the Edit Menu
+	 */
 	private void setEditTab() {
 		edit = new JMenu("Edit");
 		add(edit);
@@ -57,15 +68,20 @@ public class Menu extends JMenuBar{
 		edit.add(cut);
 		
 		copy = new JMenuItem("Copy");
+		copy.addActionListener(eeh);
 		edit.add(copy);
 		
 		paste = new JMenuItem("Paste");
 		edit.add(paste);
 		
 		delete = new JMenuItem("Delete");
+		edit.addActionListener(eeh);
 		edit.add(delete);
 	}
 	
+	/*
+	 * A helper method to set up the Format Menu
+	 */
 	private void setFormatTab() {
 		format = new JMenu("Format");
 		add(format);
@@ -75,6 +91,9 @@ public class Menu extends JMenuBar{
 		
 	}
 	
+	/*
+	 * A helper method to set up the View Menu
+	 */
 	private void setViewTab() {
 		view = new JMenu("View");
 		add(view);
