@@ -11,7 +11,7 @@ public class TextEditorGUI extends JFrame {
 	protected JTextArea textArea;
 	private JScrollPane scrollPane;
 	private Menu menu;
-	private TextEditorEventHandler teeh;
+	
 	
 	public TextEditorGUI() {
 		setTitle("Untitled-TextEditor");
@@ -32,6 +32,8 @@ public class TextEditorGUI extends JFrame {
 		textArea.getDocument().addDocumentListener(new TextEditorEventHandler(this));
 		scrollPane = new JScrollPane(textArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		add(scrollPane);
+		
+		addWindowListener(new ExitEventHandler(this));
 		
 	}
 	

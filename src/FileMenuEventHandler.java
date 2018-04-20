@@ -97,7 +97,8 @@ public class FileMenuEventHandler implements ActionListener {
 			JFileChooser choose = new JFileChooser();
 			if(choose.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 			try {
-					String fileName =choose.getCurrentDirectory().toString()+ "\\" + choose.getSelectedFile().getName();
+					dir=choose.getCurrentDirectory().toString();
+					String fileName =dir+ "\\" + choose.getSelectedFile().getName();
 				    File file = new File(fileName);
 				    if(file.exists()) {
 				    	int confirm = JOptionPane.showConfirmDialog(null, "File already exists. Do you want to overwrite it?","Choose one",JOptionPane.YES_NO_OPTION);

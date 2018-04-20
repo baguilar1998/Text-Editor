@@ -18,10 +18,7 @@ public class EditMenuEventHandler implements ActionListener{
 		String editMenuName = e.getActionCommand();
 		
 		if(editMenuName.equals("Delete")) {
-			String selectedText = ((TextEditorGUI)frame).textArea.getSelectedText();
-			System.out.println(selectedText);
-			String deletedText=((TextEditorGUI)frame).textArea.getText().replace(selectedText,"");
-			((TextEditorGUI)frame).textArea.setText(deletedText);
+
 		}
 	}
 }
