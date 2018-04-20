@@ -8,7 +8,7 @@ public class TextEditorEventHandler implements DocumentListener {
 	
 	/*
 	 * Default constructor to TextEditorEventHandler
-	 * @param frame the current JFrame 
+	 * @param frame the current frame 
 	 */
 	public TextEditorEventHandler(JFrame frame) {
 		this.frame = frame;
@@ -16,7 +16,7 @@ public class TextEditorEventHandler implements DocumentListener {
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+
 	}
 	
 	/*
@@ -26,7 +26,6 @@ public class TextEditorEventHandler implements DocumentListener {
 	 */
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
 		if(((TextEditorGUI)frame).getTitle().charAt(0) == '*')return;
 		else ((TextEditorGUI)frame).setTitle("*"+((TextEditorGUI)frame).getTitle());
 		

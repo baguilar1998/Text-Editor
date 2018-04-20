@@ -29,6 +29,7 @@ public class TextEditorGUI extends JFrame {
 		
 		textArea = new JTextArea();
 		textArea.setFont(textArea.getFont().deriveFont(22f));
+		textArea.addMouseListener(new EditMenuEventHandler(this));
 		textArea.getDocument().addDocumentListener(new TextEditorEventHandler(this));
 		scrollPane = new JScrollPane(textArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		add(scrollPane);
