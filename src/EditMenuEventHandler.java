@@ -2,23 +2,19 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
-import javax.swing.JFrame;
 
 
-public class EditMenuEventHandler implements ActionListener,MouseListener{
+
+public class EditMenuEventHandler implements ActionListener{
 	
-	private JFrame frame;
-	private String selectedText;
+	private TextEditorGUI frame;
 	
-	public EditMenuEventHandler(JFrame frame) {
+	public EditMenuEventHandler(TextEditorGUI frame) {
 		this.frame=frame;
-		selectedText = "";
+		
 	}
 
 	@Override
@@ -27,53 +23,32 @@ public class EditMenuEventHandler implements ActionListener,MouseListener{
 		String editMenuName = e.getActionCommand();
 		
 		if(editMenuName.equals("Copy")) {
-			StringSelection selection = new StringSelection(selectedText);
-			try {
-				System.out.println(selection.getTransferData(DataFlavor.stringFlavor));
-			} catch (UnsupportedFlavorException | IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			StringSelection selection = new StringSelection(frame.selectedText);
 			Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-			clipboard.setContents(selection, selection);
+			clipboard.setContents(selection, null);
+		}
+		
+		if(editMenuName.equals("Paste")) {
+			Clipboard c = Toolkit.getDefaultToolkit().getSystemClipboard();
+			Transferable t = c.getContents(this);
+			if(t == null) return;
+			try {
+				frame.textArea.append((String)t.getTransferData(DataFlavor.stringFlavor));
+			}catch(Exception ex) {
+				return;
+			}
+		}
+		
+		if(editMenuName.equals("Delete")) {
+			if(frame.textArea.getSelectedText()!=null) {
+				frame.textArea.setText(frame.textArea.getText().replace(frame.textArea.getSelectedText(), ""));
+			}else {
+				System.out.println("Nothing was selected");
+			}
 		}
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		if(((TextEditorGUI)frame).textArea.getSelectedText()!=null) {
-			selectedText = ((TextEditorGUI)frame).textArea.getSelectedText();
-			System.out.println(selectedText);
-		}else {
-			System.out.println("Fix this");
-		}
-		
-	}
 }
 		
 

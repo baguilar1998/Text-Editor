@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 
 public class ExitEventHandler implements WindowListener{
 
-	private JFrame frame;
+	private TextEditorGUI frame;
 	
-	public ExitEventHandler(JFrame frame) {
+	public ExitEventHandler(TextEditorGUI frame) {
 		this.frame=frame;
 	}
 	@Override
@@ -29,8 +29,8 @@ public class ExitEventHandler implements WindowListener{
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		// TODO Auto-generated method stub
-		String fileName =((TextEditorGUI)frame).getTitle().substring(1,((TextEditorGUI)frame).getTitle().indexOf("-"));
-		if(((TextEditorGUI)frame).getTitle().charAt(0)=='*') {
+		String fileName =frame.getTitle().substring(1,frame.getTitle().indexOf("-"));
+		if(frame.getTitle().charAt(0)=='*') {
 			int saveConfirm = JOptionPane.showConfirmDialog(null, "Do you want to save changes to "+fileName+"?");
 			if(saveConfirm == JOptionPane.YES_OPTION) {
 				if(fileName.equals("Untitled")) {
@@ -44,7 +44,7 @@ public class ExitEventHandler implements WindowListener{
 						    	if(confirm == JOptionPane.NO_OPTION)return;
 						    }
 							PrintWriter writer = new PrintWriter(file);
-							writer.write(((TextEditorGUI)frame).textArea.getText());
+							writer.write(frame.textArea.getText());
 							writer.close();
 						} catch (FileNotFoundException e1) {
 							// TODO Auto-generated catch block

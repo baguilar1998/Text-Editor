@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
 
 public class FileMenuEventHandler implements ActionListener {
 
-	private JFrame frame;
+	private TextEditorGUI frame;
 	private String dir;
 	
 	/*
 	 * Default constructor for FileMenuEventHandler
 	 * @param frame the current frame
 	 */
-	public FileMenuEventHandler(JFrame frame) {
+	public FileMenuEventHandler(TextEditorGUI frame) {
 		this.frame = frame;
 	}
 	
@@ -30,7 +30,7 @@ public class FileMenuEventHandler implements ActionListener {
 		
 		if(menuName.equals("New")) {
 			frame.setTitle("Untitled-TextEditor");
-			((TextEditorGUI)frame).textArea.setText("");
+			frame.textArea.setText("");
 		}
 		
 		if(menuName.equals("Open")) {
@@ -39,12 +39,12 @@ public class FileMenuEventHandler implements ActionListener {
 		
 		if(menuName.equals("Save")) {
 			String fileName="";
-			if(((TextEditorGUI)frame).getTitle().charAt(0)=='*') {
-				fileName=((TextEditorGUI)frame).getTitle().substring(1,((TextEditorGUI)frame).getTitle().indexOf("-"));
-				((TextEditorGUI)frame).setTitle(((TextEditorGUI)frame).getTitle().substring(1));
+			if(frame.getTitle().charAt(0)=='*') {
+				fileName=frame.getTitle().substring(1,frame.getTitle().indexOf("-"));
+				frame.setTitle(frame.getTitle().substring(1));
 			}else {
-				fileName =((TextEditorGUI)frame).getTitle().substring(0,((TextEditorGUI)frame).getTitle().indexOf("-"));
-				((TextEditorGUI)frame).setTitle(((TextEditorGUI)frame).getTitle());
+				fileName =frame.getTitle().substring(0,frame.getTitle().indexOf("-"));
+				frame.setTitle(frame.getTitle());
 			}
 
 			File file = new File(dir+"\\"+fileName);
@@ -77,9 +77,9 @@ public class FileMenuEventHandler implements ActionListener {
 			    	if(confirm == JOptionPane.NO_OPTION)return;
 			    }
 				PrintWriter writer = new PrintWriter(file);
-				writer.write(((TextEditorGUI)frame).textArea.getText());
+				writer.write(frame.textArea.getText());
 				writer.close();
-				((TextEditorGUI)frame).setTitle(choose.getSelectedFile().getName()+"-Text Editor");
+				frame.setTitle(choose.getSelectedFile().getName()+"-Text Editor");
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}
@@ -95,7 +95,7 @@ public class FileMenuEventHandler implements ActionListener {
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(file);
-			writer.write(((TextEditorGUI)frame).textArea.getText());
+			writer.write(frame.textArea.getText());
 			writer.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
@@ -113,14 +113,14 @@ public class FileMenuEventHandler implements ActionListener {
 					File selectedFile = choose.getSelectedFile();
 					dir=choose.getCurrentDirectory().toString();
 					Scanner readFile = new Scanner(selectedFile);
-					if(!((TextEditorGUI)frame).textArea.getText().isEmpty()) {
-						((TextEditorGUI)frame).textArea.setText("");
+					if(!frame.textArea.getText().isEmpty()) {
+						frame.textArea.setText("");
 					}
 					while(readFile.hasNext()) {
 						String currentLine = readFile.nextLine();
-						((TextEditorGUI)frame).textArea.append(currentLine+"\n");
+						frame.textArea.append(currentLine+"\n");
 					}
-					((TextEditorGUI)frame).setTitle(selectedFile.getName()+"-Text Editor");
+					frame.setTitle(selectedFile.getName()+"-Text Editor");
 					readFile.close();
 				} catch (FileNotFoundException ex) {
 					JOptionPane.showMessageDialog(null, "File Not Found");

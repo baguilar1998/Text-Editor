@@ -5,7 +5,7 @@ import javax.swing.JMenuItem;
 
 public class Menu extends JMenuBar{
 
-	private JFrame frame;
+	private TextEditorGUI frame;
 	private JMenu file,edit,format,view;
 	private JMenuItem newFile,open,save,saveAs;
 	private JMenuItem undo,cut,copy,paste,delete;
@@ -19,7 +19,7 @@ public class Menu extends JMenuBar{
 	 * Default constructor for the menu
 	 * @param the JFrame the menu will be placed in
 	 */
-	public Menu(JFrame frame) {
+	public Menu(TextEditorGUI frame) {
 		this.frame = frame;
 		meh = new FileMenuEventHandler(frame);
 		eeh = new EditMenuEventHandler(frame);
@@ -72,10 +72,11 @@ public class Menu extends JMenuBar{
 		edit.add(copy);
 		
 		paste = new JMenuItem("Paste");
+		paste.addActionListener(eeh);
 		edit.add(paste);
 		
 		delete = new JMenuItem("Delete");
-		edit.addActionListener(eeh);
+		delete.addActionListener(eeh);
 		edit.add(delete);
 	}
 	
