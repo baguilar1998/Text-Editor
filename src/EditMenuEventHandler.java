@@ -43,7 +43,7 @@ public class EditMenuEventHandler implements ActionListener{
 			if(frame.textArea.getSelectedText()!=null) {
 				frame.textArea.setText(frame.textArea.getText().replace(frame.textArea.getSelectedText(), ""));
 			}else {
-				System.out.println("Nothing was selected");
+				return;
 			}
 		}
 	}
