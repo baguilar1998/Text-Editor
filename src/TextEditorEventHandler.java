@@ -24,20 +24,16 @@ public class TextEditorEventHandler implements DocumentListener {
 	 */
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		if(frame.textArea.getText().equals(frame.originalText)) {
-			if(frame.getTitle().charAt(0) == '*')frame.setTitle(frame.getTitle().substring(1));
-			else {
-				frame.setTitle(frame.getTitle());
-			}
-		}else if(frame.getTitle().charAt(0) == '*') {
-			return;
-		}else {
-			frame.setTitle("*"+frame.getTitle());
-		}
+		changeTitle();
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
+		changeTitle();
+	
+	}
+	
+	private void changeTitle() {
 		if(frame.textArea.getText().equals(frame.originalText)) {
 			if(frame.getTitle().charAt(0) == '*')frame.setTitle(frame.getTitle().substring(1));
 			else {
@@ -47,8 +43,7 @@ public class TextEditorEventHandler implements DocumentListener {
 			return;
 		}else {
 			frame.setTitle("*"+frame.getTitle());
+		
 		}
-	
 	}
-
 }

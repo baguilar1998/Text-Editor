@@ -73,7 +73,9 @@ public class FileMenuEventHandler implements ActionListener {
 				String fileName =dir+ "\\" + choose.getSelectedFile().getName();
 			    File file = new File(fileName);
 			    if(file.exists()) {
-			    	int confirm = JOptionPane.showConfirmDialog(null, "File already exists. Do you want to overwrite it?","Choose one",JOptionPane.YES_NO_OPTION);
+			    	int confirm = JOptionPane.showConfirmDialog(null, 
+			    			"File already exists. Do you want to overwrite it?",
+			    			"Choose one",JOptionPane.YES_NO_OPTION);
 			    	if(confirm == JOptionPane.NO_OPTION)return;
 			    }
 				PrintWriter writer = new PrintWriter(file);
@@ -151,7 +153,6 @@ public class FileMenuEventHandler implements ActionListener {
 							writer.write(frame.textArea.getText());
 							writer.close();
 						} catch (FileNotFoundException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}

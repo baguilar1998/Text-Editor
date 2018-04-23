@@ -16,7 +16,7 @@ public class FontPrompt {
 	
 	public FontPrompt() {
 		currentFont=Font.getFont("Serif");
-		fontSize=12;
+		fontSize=22;
 		fontColor = Color.BLACK;
 	}
 	
@@ -37,20 +37,24 @@ public class FontPrompt {
 	}
 	
 	public void setFontSize(float fontSize) {
-		this.fontSize=fontSize;
+		FontPrompt.fontSize=fontSize;
 	}
 	
 	public void setFontColor(Color fontColor) {
-		this.fontColor = fontColor;
+		FontPrompt.fontColor = fontColor;
 	}
     
 	public void displayPrompt() {
-        JOptionPane.showConfirmDialog(null,
-                        customJOptionPane(),
-                        "JOptionPane Example : ",
-                        JOptionPane.OK_CANCEL_OPTION,
-                        JOptionPane.PLAIN_MESSAGE);
-        setFontSize(Float.parseFloat(fontSizeInput.getText()));
+        int confirm =JOptionPane.showConfirmDialog(null,customJOptionPane(),"Font",JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+        if(confirm == JOptionPane.OK_OPTION) {
+        	try {
+        		setFontSize(Float.parseFloat(fontSizeInput.getText()));
+        	}catch(Exception e) {
+        		JOptionPane.showMessageDialog(null, "Invalid Inputs. No changes were made.");
+        	}
+        }else {
+        	return;
+        }
     }
 
     private JPanel customJOptionPane() {

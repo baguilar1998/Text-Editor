@@ -24,6 +24,7 @@ public class FormatMenuEventHandler implements ActionListener {
 	            public void run() {
 	            	try {
 	            		fontPrompt.displayPrompt();
+
 	            	}finally {
 	            		frame.textArea.setFont(frame.textArea.getFont().deriveFont(fontPrompt.getFontSize()));
 	            	}
