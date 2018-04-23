@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-
 public class TextEditorGUI extends JFrame {
 	
 	private ImageIcon img;
@@ -12,7 +11,6 @@ public class TextEditorGUI extends JFrame {
 	private JScrollPane scrollPane;
 	private Menu menu;
 	protected String selectedText,originalText;
-	
 	
 	public TextEditorGUI() {
 		setTitle("Untitled-TextEditor");
@@ -32,10 +30,13 @@ public class TextEditorGUI extends JFrame {
 		img = new ImageIcon("icon.png");
 		setIconImage(img.getImage());
 		
+
 		textArea = new JTextArea();
 		textArea.setFont(textArea.getFont().deriveFont(22f));
 		textArea.addMouseListener(new TextAreaMouseListener(this));
 		textArea.getDocument().addDocumentListener(new TextEditorEventHandler(this));
+
+		
 		scrollPane = new JScrollPane(textArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		add(scrollPane);
 		

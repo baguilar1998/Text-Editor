@@ -12,6 +12,7 @@ public class Menu extends JMenuBar{
 	private JMenuItem statusbar;
 	private FileMenuEventHandler meh;
 	private EditMenuEventHandler eeh;
+	private FormatMenuEventHandler fmeh;
 
 
 	/*
@@ -22,6 +23,7 @@ public class Menu extends JMenuBar{
 		this.frame = frame;
 		meh = new FileMenuEventHandler(frame);
 		eeh = new EditMenuEventHandler(frame);
+		fmeh = new FormatMenuEventHandler(frame);
 		setFileTab();
 		setEditTab();
 		setFormatTab();
@@ -61,6 +63,7 @@ public class Menu extends JMenuBar{
 		add(edit);
 		
 		undo = new JMenuItem("Undo");
+		undo.addActionListener(eeh);
 		edit.add(undo);
 		
 		cut = new JMenuItem("Cut");
@@ -87,6 +90,7 @@ public class Menu extends JMenuBar{
 		add(format);
 		
 		font = new JMenuItem("Font");
+		font.addActionListener(fmeh);
 		format.add(font);
 		
 	}

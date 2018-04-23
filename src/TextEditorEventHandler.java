@@ -1,4 +1,3 @@
-import javax.swing.JFrame;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -13,7 +12,6 @@ public class TextEditorEventHandler implements DocumentListener {
 	 */
 	public TextEditorEventHandler(TextEditorGUI frame) {
 		this.frame = frame;
-		//originalText = frame.textArea.getText();
 	}
 
 	@Override
@@ -28,23 +26,29 @@ public class TextEditorEventHandler implements DocumentListener {
 	public void insertUpdate(DocumentEvent e) {
 		if(frame.textArea.getText().equals(frame.originalText)) {
 			if(frame.getTitle().charAt(0) == '*')frame.setTitle(frame.getTitle().substring(1));
-			else frame.setTitle(frame.getTitle());
-		}else if(frame.getTitle().charAt(0) == '*') {return;}
-		else frame.setTitle("*"+frame.getTitle());
-		
+			else {
+				frame.setTitle(frame.getTitle());
+			}
+		}else if(frame.getTitle().charAt(0) == '*') {
+			return;
+		}else {
+			frame.setTitle("*"+frame.getTitle());
+		}
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
-
 		if(frame.textArea.getText().equals(frame.originalText)) {
 			if(frame.getTitle().charAt(0) == '*')frame.setTitle(frame.getTitle().substring(1));
-			else frame.setTitle(frame.getTitle());
-		}else if(frame.getTitle().charAt(0) == '*') {return;}
-		else frame.setTitle("*"+frame.getTitle());
-		//if(((TextEditorGUI)frame).getTitle().charAt(0) == '*')return;
-		//else ((TextEditorGUI)frame).setTitle("*"+((TextEditorGUI)frame).getTitle());
+			else {
+				frame.setTitle(frame.getTitle());
+			}
+		}else if(frame.getTitle().charAt(0) == '*') {
+			return;
+		}else {
+			frame.setTitle("*"+frame.getTitle());
+		}
+	
 	}
 
 }
